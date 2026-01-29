@@ -80,7 +80,7 @@ export function LoginForm({
         <CardContent>
           <form id="login-form" onSubmit={(e) => {
             e.preventDefault()
-            void form.handleSubmit()
+            form.handleSubmit()
           }}>
             <FieldGroup>
               <Field>

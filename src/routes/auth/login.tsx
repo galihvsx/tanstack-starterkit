@@ -28,7 +28,7 @@ function RouteComponent() {
                     </div>
                     Acme Inc.
                 </a>
-                <LoginForm />
+                <LoginForm redirectTo='/profile' />
             </div>
         </div>
     )

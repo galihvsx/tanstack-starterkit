@@ -22,13 +22,15 @@ interface MyRouterContext {
   userSession?: UserSession | null
 }
 
-export const Route = createRootRouteWithContext<MyRouterContext>()({
-  head: () => ({
-    beforeLoad: async ({ context }: { context: MyRouterContext }) => {
-      const userSession = await context.queryClient.fetchQuery(authQueries.user())
+const NotFoundComponent = () => <p>Not Found</p>
 
-      return { userSession }
-    },
+export const Route = createRootRouteWithContext<MyRouterContext>()({
+  beforeLoad: async ({ context }) => {
+    const userSession = await context.queryClient.fetchQuery(authQueries.user())
+
+    return { userSession }
+  },
+  head: () => ({
     meta: [
       {
         charSet: 'utf-8',
@@ -50,6 +52,7 @@ export const Route = createRootRouteWithContext<MyRouterContext>()({
   }),
 
   shellComponent: RootDocument,
+  notFoundComponent: NotFoundComponent,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
@@ -80,3 +83,4 @@ function RootDocument({ children }: { children: React.ReactNode }) {
     </html>
   )
 }
+
